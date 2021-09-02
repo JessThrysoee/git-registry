@@ -1,0 +1,56 @@
+#!/bin/bash -e
+
+usage() {
+    echo "usage: add-repo reponame.git"
+    echo ""
+    echo "examples:"
+    echo "   > add-repo example.git"
+    echo "   > add-repo github/githubproject.git"
+    echo "   > add-repo private/privateproject.git"
+    echo ""
+}
+
+if [[ -z $1 || $1 == -h || $1 == --help ]]
+then
+    [[ -z $1 ]] && echo "missing repository name"
+    usage
+    exit 1
+fi
+
+
+shopt -s extglob
+
+source "$HOME/git-shell-commands/env.sh"
+
+reponame="$1"
+
+if [[ ${reponame##*.} != git ]]
+then
+    echo "repository name must have .git extension"
+    usage
+    exit 1
+fi
+
+
+if [[ ${reponame%%/*} != src ]]
+then
+    reponame=src/$reponame
+fi
+
+
+repodir="$HOME/$reponame"
+
+mkdir -p "$repodir"
+cd "$repodir" || exit
+if ! git rev-parse --git-dir >/dev/null 2>&1
+then
+    git init --bare
+    printf "\n%s\n" "Examples:"
+    echo
+    echo "  \$ git remote add git-registry ${GIT_REGISTRY_AUTHORITY}:$reponame"
+    echo "  \$ git clone ${GIT_REGISTRY_AUTHORITY}:$reponame"
+    echo
+else
+    echo "repo already exists: $reponame"
+fi
+

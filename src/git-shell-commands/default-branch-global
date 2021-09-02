@@ -1,0 +1,22 @@
+#!/bin/bash
+
+usage() {
+    echo "Set the default branch name e.g. when initializing a new repository (init.defaultBranch)."
+    echo
+    echo "usage: default-branch-global <default-branch-name>"
+    echo ""
+    echo "examples:"
+    echo "   > default-branch-global trunk"
+    echo ""
+}
+
+if [[ -z $1 || $1 == -h || $1 == --help ]]
+then
+    [[ -z $1 ]] && echo "missing default branch name"
+    usage
+    exit 1
+fi
+default_branch_name="$1"
+
+git config --file ~/src/.gitconfig init.defaultBranch "$default_branch_name"
+

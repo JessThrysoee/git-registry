@@ -1,0 +1,12 @@
+#!/bin/bash
+
+print_if_bare_repo() {
+    if "$(git --git-dir="$1" rev-parse --is-bare-repository)" = true
+    then
+        printf "%s\n" "$1"
+    fi
+}
+export -f print_if_bare_repo
+
+find src -type d -name "*.git" -prune 2>/dev/null | sort | xargs -I{} bash -c "print_if_bare_repo {}"
+

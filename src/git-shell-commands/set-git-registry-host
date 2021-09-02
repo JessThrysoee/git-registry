@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ -z $1 ]]; then
+    echo 'GIT_REGISTRY_HOST=' >> ~/src/.env
+else
+    printf 'GIT_REGISTRY_HOST="%s"\n' "$1" >> ~/src/.env
+fi

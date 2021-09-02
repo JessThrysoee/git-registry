@@ -1,0 +1,49 @@
+#!/bin/bash -e
+
+usage() {
+    echo "usage: del-repo reponame.git"
+    echo ""
+    echo "examples:"
+    echo "   > del-repo example.git"
+    echo "   > del-repo github/githubproject.git"
+    echo "   > del-repo private/privateproject.git"
+    echo ""
+}
+
+if [[ -z $1 || $1 == -h || $1 == --help ]]
+then
+    [[ -z $1 ]] && echo "missing repository name"
+    usage
+    exit 1
+fi
+
+
+shopt -s extglob
+
+source "$HOME/git-shell-commands/env.sh"
+
+reponame="$1"
+
+if [[ ${reponame##*.} != git ]]
+then
+    echo "repository name must have .git extension"
+    usage
+    exit 1
+fi
+
+if [[ ${reponame%%/*} != src ]]
+then
+    reponame=src/$reponame
+fi
+
+if [[ ! -d $reponame ]]
+then
+    echo "repository not found: $reponame"
+    usage
+    exit 1
+fi
+
+
+rm -rf "$HOME/$reponame"
+echo "repository deleted"
+

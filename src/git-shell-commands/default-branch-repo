@@ -1,0 +1,52 @@
+#!/bin/bash
+
+usage() {
+    echo "Change default branch name."
+    echo
+    echo "usage: default-branch-repo reponame.git <default-branch-name>"
+    echo ""
+    echo "examples:"
+    echo "   git> default-branch-repo privateprojects/example.git mydefaultbranch"
+    echo ""
+}
+
+if [[ -z $1 || $1 == -h || $1 == --help ]]
+then
+    [[ -z $1 ]] && echo "missing repository name"
+    usage
+    exit 1
+fi
+reponame="$1"
+
+if [[ -z $2 ]]
+then
+    echo "missing default branch name"
+    usage
+    exit 1
+fi
+default_branch_name="$2"
+
+
+if [[ ${reponame##*.} != git ]]
+then
+    echo "repository name must have .git extension"
+    usage
+    exit 1
+fi
+
+if [[ ${reponame%%/*} != src ]]
+then
+    reponame=src/$reponame
+fi
+
+repodir="$HOME/$reponame"
+
+if [[ ! -d $reponame ]]
+then
+    echo "repository not found: $1"
+    usage
+    exit 1
+fi
+
+git -C "$repodir" symbolic-ref HEAD "refs/heads/$default_branch_name"
+

@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+
+  git-registry:
+    image: thrysoee/git-registry:${GIT_REGISTRY_VERSION:-latest}
+    container_name: git-registry
+    init: true
+    ports:
+      - published: ${GIT_REGISTRY_PORT:-2222}
+        target: 22
+    volumes:
+      - type: volume
+        source: git-registry-etc-ssh-volume
+        target: /git-registry/etc/ssh
+      - type: volume
+        source: git-registry-repositories-volume
+        target: /home/git/src
+
+volumes:
+  git-registry-etc-ssh-volume:
+  git-registry-repositories-volume:
+

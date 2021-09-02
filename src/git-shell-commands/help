@@ -1,0 +1,42 @@
+#!/bin/bash
+
+source "$HOME/git-shell-commands/env.sh"
+
+cat <<EOF
+Commands:
+  help
+  exit
+  
+  ls                     List repositories
+  add-repo               Add new repository
+  del-repo               Delete repository
+
+  default-branch-repo    Change default branch name of an existing repository
+  default-branch-global  Set the default branch name e.g. when initializing a new repository
+
+  set-git-registry-host  Change the hostname printed in help and usage
+  set-git-registry-port  Change the port printed in help and usage
+
+Examples:
+  git> ls
+  
+  git> add-repo example.git
+  git> add-repo github/githubproject.git
+  git> add-repo private/privateproject.git
+  
+  git> del-repo example.git
+  
+  git> default-branch-global trunk
+  git> default-branch-repo private/privateproject.git trunk
+  
+  git> set-git-registry-host example.com
+  git> set-git-registry-port
+  
+  \$ git clone ${GIT_REGISTRY_AUTHORITY}:src/example.git
+  \$ git remote add git-registry ${GIT_REGISTRY_AUTHORITY}:src/example.git
+  
+  \$ ssh git@${GIT_REGISTRY_HOST} $( [[ -n $GIT_REGISTRY_PORT ]] && echo "-p ${GIT_REGISTRY_PORT} " )ls
+
+EOF
+
+
