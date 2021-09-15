@@ -16,6 +16,7 @@ services:
       - type: volume
         source: git-registry-repositories-volume
         target: /home/git/src
+    restart: unless-stopped
 
 volumes:
   git-registry-etc-ssh-volume:
