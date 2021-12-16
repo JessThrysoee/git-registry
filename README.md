@@ -74,3 +74,9 @@ In a local git repository, e.g. ~/example, init and add a remote
 # Backup
 
 See example scripts in `src/backup` for inspiration of how backup of the repositories might be handled.
+
+# Docker Hub
+
+[thrysoee/git-registry](https://hub.docker.com/r/thrysoee/git-registry)
+
+
