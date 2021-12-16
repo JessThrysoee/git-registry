@@ -8,7 +8,7 @@
 
 # Getting started
 
-Download `docker-compose.yml` from the [latest release](https://github.com/JessThrysoee/git-registry/releases/latest/download/git-registry.tar.gz), or clone this repository.
+Download [docker-compose.yml](https://github.com/JessThrysoee/git-registry/blob/main/docker-compose.yml), or clone this repository.
 
 Generate SSH host keys (only once, before the very first start up)
 
