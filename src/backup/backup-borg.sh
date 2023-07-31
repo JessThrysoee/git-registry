@@ -17,7 +17,7 @@ borgbackup_volume="git-registry_git-registry-borgbackup-volume"
 
 
 docker-compose-run() {
-    docker-compose run --rm --no-deps --name "$name" \
+    docker compose run --rm --no-deps --name "$name" \
         -e "BORG_REPO=$BORG_REPO" \
         -e "BORG_BASE_DIR=/borgbackup" \
         -e "BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes" \

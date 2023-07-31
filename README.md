@@ -12,15 +12,15 @@ Download [docker-compose.yml](https://github.com/JessThrysoee/git-registry/blob/
 
 Generate SSH host keys (only once, before the very first start up)
 
-      $ docker-compose run --rm git-registry ssh-keygen -A -f /git-registry
+      $ docker compose run --rm git-registry ssh-keygen -A -f /git-registry
 
 Start up `git-registry`
 
-    $ docker-compose up -d
+    $ docker compose up -d
 
 Add a SSH public key
 
-    $ docker-compose exec git-registry /add-public-key.sh "$(cat ~/.ssh/id_rsa.pub)"
+    $ docker compose exec git-registry /add-public-key.sh "$(cat ~/.ssh/id_rsa.pub)"
 
 Test the connection
 
