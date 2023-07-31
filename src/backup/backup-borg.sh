@@ -40,9 +40,8 @@ elif [[ $1 == "create" ]]; then
             borg create                                 \
                --stats                                  \
                --info                                   \
-               --noatime                                \
                --noctime                                \
-               --nobsdflags                             \
+               --noflags                                \
                --exclude-caches                         \
                --one-file-system                        \
                "::git-repository{now}" .
