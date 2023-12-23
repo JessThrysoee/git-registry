@@ -1,4 +1,4 @@
-FROM alpine:3.18.4
+FROM alpine:3.19
 
 RUN apk add --no-cache git openssh bash shadow borgbackup \
   && adduser -D -u 10001 -s /usr/bin/git-shell git \
