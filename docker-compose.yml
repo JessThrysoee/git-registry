@@ -1,7 +1,6 @@
-version: "3.9"
+---
 
 services:
-
   git-registry:
     image: thrysoee/git-registry:${GIT_REGISTRY_VERSION:-latest}
     container_name: git-registry
@@ -19,6 +18,6 @@ services:
     restart: unless-stopped
 
 volumes:
-  git-registry-etc-ssh-volume:
-  git-registry-repositories-volume:
+  git-registry-etc-ssh-volume: ~
+  git-registry-repositories-volume: ~
 
