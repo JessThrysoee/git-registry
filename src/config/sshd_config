@@ -9,7 +9,6 @@ AcceptEnv LANG LC_*
 
 DisableForwarding yes
 
-HostKey /git-registry/etc/ssh/ssh_host_dsa_key
 HostKey /git-registry/etc/ssh/ssh_host_ecdsa_key
 HostKey /git-registry/etc/ssh/ssh_host_ed25519_key
 HostKey /git-registry/etc/ssh/ssh_host_rsa_key
