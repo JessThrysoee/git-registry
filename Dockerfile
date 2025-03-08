@@ -1,11 +1,12 @@
-FROM alpine:3.21
+FROM alpine:3.21.3
 
-RUN apk add --no-cache git openssh bash shadow borgbackup \
-  && adduser -D -u 10001 -s /usr/bin/git-shell git \
-  && usermod -p '*' git \
-  && mkdir -p /git-registry/etc/ssh \
-  && mkdir /home/git/src \
-  && chown git:git /home/git/src 
+RUN set -eux; \
+  apk add --no-cache git openssh bash shadow borgbackup; \
+  adduser -D -u 10001 -s /usr/bin/git-shell git; \
+  usermod -p '*' git; \
+  mkdir -p /git-registry/etc/ssh; \
+  mkdir /home/git/src; \
+  chown git:git /home/git/src;
 
 COPY src/config/sshd_config /etc/ssh/
 COPY src/scripts/add-public-key.sh /
